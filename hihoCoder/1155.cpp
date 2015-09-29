@@ -25,6 +25,7 @@
 #include <initializer_list>
 #include <iterator>
 #include <limits>
+#include <memory>
 #include <numeric>
 #include <random>
 #include <regex>
@@ -34,7 +35,6 @@
 #include <typeinfo>
 #include <type_traits>
 #include <utility>
-#include <memory>
 
 using namespace std;
 
@@ -74,7 +74,7 @@ public:
     static pointer construct(istream &in);
     virtual ::value value(vars_t &vars) = 0;
 public:
-    ~node() {};
+    virtual ~node() {};
 };
 
 struct atom_node: node {
