@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/longest-substring-without-repeating-characters/
-// runtime: O(n), space: O(n)
+// runtime: O(n), space: O(1)
 
 #include <cstdint>
 #include <cmath>
