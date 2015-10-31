@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/longest-palindromic-substring/
-// runtime: O(n), space: O(1)
+// runtime: O(n^2), space: O(1)
 
 #include <cstdint>
 #include <cmath>
