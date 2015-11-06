@@ -41,19 +41,6 @@
 
 using namespace std;
 
-struct tuple_hash {
-    using argument_type = tuple<int, int, int>;
-    using result_type = size_t;
-    result_type operator()(const argument_type &key) const {
-        size_t a = get<0>(key);
-        size_t b = get<1>(key);
-        size_t c = get<2>(key);
-        a <<= 16;
-        b <<= 8;
-        return a + b + c;
-    }
-};
-
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int> &nums) {
@@ -105,6 +92,19 @@ public:
         }
         return move(ret);
     }
+private:
+    struct tuple_hash {
+        using argument_type = tuple<int, int, int>;
+        using result_type = size_t;
+        result_type operator()(const argument_type &key) const {
+            size_t a = get<0>(key);
+            size_t b = get<1>(key);
+            size_t c = get<2>(key);
+            a <<= 16;
+            b <<= 8;
+            return a + b + c;
+        }
+    };
 };
 
 int main(int argc, const char *argv[]) {
