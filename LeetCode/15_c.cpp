@@ -56,7 +56,7 @@ public:
                 if (sum <= 0) while (j < k && nums[j] == b) ++j;
                 if (sum >= 0) while (j < k && nums[k] == c) --k;
             }
-            while (nums[i] == a) ++i;
+            while (i < nums.size() && nums[i] == a) ++i;
         }
         return move(ret);
     }
