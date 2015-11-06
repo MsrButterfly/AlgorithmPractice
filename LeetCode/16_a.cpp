@@ -45,21 +45,22 @@ class Solution {
 public:
     int threeSumClosest(vector<int> &nums, int target) {
         assert(nums.size() >= 3);
-        int ret = nums[0] + nums[1] + nums[2] - target;
+        int minDiff = nums[0] + nums[1] + nums[2] - target;
         sort(begin(nums), end(nums), less<int>());
-        for (size_t i = 0; i < nums.size();) {
+        for (size_t i = 0; i < nums.size() && minDiff;) {
             const int a = nums[i];
             size_t j = i + 1, k = nums.size() - 1;
             while (j < k) {
                 const int b = nums[j], c = nums[k];
-                const int sum = a + b + c - target;
-                if (abs(sum) < abs(ret)) ret = sum;
-                if (sum <= 0) while (j < k && nums[j] == b) ++j;
-                if (sum >= 0) while (j < k && nums[k] == c) --k;
+                const int diff = a + b + c - target;
+                if (abs(diff) < abs(minDiff)) minDiff = diff;
+                if (diff == 0) break;
+                if (diff < 0) ++j;
+                if (diff > 0) --k;
             }
             while (i < nums.size() && nums[i] == a) ++i;
         }
-        return ret + target;
+        return minDiff + target;
     }
 };
 
