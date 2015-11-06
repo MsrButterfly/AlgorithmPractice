@@ -44,35 +44,19 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int> &nums) {
-        if (nums.size() < 3) {
-            return vector<vector<int>>();
-        }
-        sort(begin(nums), end(nums), less<int>());
         vector<vector<int>> ret;
-        for (size_t i = 0; i < nums.size() - 2; ++i) {
-            if (i > 0 && nums[i - 1] == nums[i]) {
-                continue;
-            }
+        sort(begin(nums), end(nums), less<int>());
+        for (size_t i = 0; i < nums.size();) {
+            const int a = nums[i];
             size_t j = i + 1, k = nums.size() - 1;
             while (j < k) {
-                auto a = nums[i];
-                auto b = nums[j];
-                auto c = nums[k];
-                if (a + b + c == 0) {
-                    ret.push_back(vector<int>({a, b, c}));
-                }
-                if (a + b + c <= 0) {
-                    ++j;
-                    while (j < nums.size() && nums[j] == nums[j - 1]) {
-                        ++j;
-                    }
-                } else {
-                    --k;
-                    while (k > 0 && nums[k] == nums[k + 1]) {
-                        --k;
-                    }
-                }
+                const int b = nums[j], c = nums[k];
+                const int sum = a + b + c;
+                if (sum == 0) ret.push_back({a, b, c});
+                if (sum <= 0) while (j < k && nums[j] == b) ++j;
+                if (sum >= 0) while (j < k && nums[k] == c) --k;
             }
+            while (nums[i] == a) ++i;
         }
         return move(ret);
     }
